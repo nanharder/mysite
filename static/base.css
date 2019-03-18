@@ -1,0 +1,19 @@
+ul {
+    list-style-type: none!important;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    word-wrap:break-word;
+}
+
+body {
+    margin-top: 80px!important;
+}
+
+ul.navbar-right"{
+    margin-right: 0;
+}
+
+
