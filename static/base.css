@@ -12,8 +12,21 @@ body {
     margin-top: 80px!important;
 }
 
-ul.navbar-right"{
+ul.navbar-right {
     margin-right: 0;
 }
 
+div.website-info {
+    text-align: center; 
+    padding-top: 2em;
+    padding-bottom: 1.5em;  
+}
 
+div.footer {
+    margin-top: 3em;
+    background-color: #eee;
+    color: #555;
+}
+div.website-info p {
+    margin-bottom: 0em;
+}
