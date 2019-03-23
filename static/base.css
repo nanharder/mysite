@@ -9,7 +9,7 @@ ul {
 }
 
 body {
-    margin-top: 80px!important;
+    margin-top: 50px!important;
 }
 
 ul.navbar-right {
@@ -30,3 +30,12 @@ div.footer {
 div.website-info p {
     margin-bottom: 0em;
 }
+
+a.navbar-brand {
+    font-size: 18px;
+}
+
+
+
+
+    

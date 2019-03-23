@@ -1,9 +1,4 @@
-h3.home-content {
-    font-size: 220%;
-    text-align: center;
-    margin-top: 4em;
-    margin-bottom: 2em;
-}
+
 
 div#container {
     margin:0 auto;
@@ -12,7 +7,29 @@ div#container {
     max-width: 30em;
 }
 
-div.hot-data {
+div.home-item {
     text-align:center;
     margin-top: 2em;
+}
+
+div.home-item h3{
+    border-bottom: 1px #ccc solid;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.jumbotron {
+    position: relative;
+    padding: 40px 0;
+    color: white!important;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0,0,0,.4),0 0 30px rgba(0,0,0,.075);
+    background: #020031;
+    background: -webkit-gradient(linear,left bottom,right top,color-stop(0,#020031),color-stop(100%,#6d3353));
+    background: -webkit-linear-gradient(45deg,#020031 0,#6d3353 100%);
+    background: -o-linear-gradient(45deg,#020031 0,#6d3353 100%);
+    background: linear-gradient(45deg,#020031 0,#6d3353 100%);
+    -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2),inset 0 -3px 7px rgba(0,0,0,.2);
+    box-shadow: inset 0 3px 7px rgba(0,0,0,.2),inset 0 -3px 7px rgba(0,0,0,.2);
+    margin-bottom: 5em;
 }
