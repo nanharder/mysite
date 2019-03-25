@@ -2,30 +2,43 @@ body {
     margin-top: 80px!important;
 }
 div.blog:not(:last-child) {
-    margin-bottom: 2em;
-    padding-bottom: 1em;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 0.5em;
+    padding: 1.5em 1em 0.8em 1.5em;
+    border-bottom: 1px solid #ddd;
 }
-div.blog h3 {
-    margin-top: 0.5em;
+
+div.blog:last-child {
+    margin-bottom: 0.5em;
+    padding: 1.5em 1em 0.8em 1.5em;
 }
 
 p {
     margin-bottom: 0;
 }
 
+div.blog-title {
+    font-size:17px;
+    margin-bottom: 0.2em
+}
+
+div.blog-content {
+    margin-bottom: 1em;
+    padding: 1em 1em 0;
+}
+
+div.blog-info {
+    border-top: 1px #eee solid;
+    padding-top: 0.5em;
+    margin-bottom: 0em;
+    display: inline-block;
+}
 ul.blog-info-description {
-    margin-bottom: 2em;
+    margin-bottom: 0em;
 }
 
 ul.blog-info-description li {
     display: inline-block;
     margin-right: 1em;
-}
-
-div.blog-content {
-    text-indent: 2em
-    margin-bottom:2em;
 }
 
 div.paginator {
@@ -44,8 +57,7 @@ div.comment-area {
     margin-top: 2em;
 }
 
-h3.comment-area-title {
-    border-bottom: 1px solid #ccc; 
+h3.comment-area-title { 
     padding-bottom: 0.4ex;
 }
 
@@ -80,9 +92,17 @@ div.like {
     color: #337ab7;
     cursor: pointer;
     display: inline-block;
-    padding: 0.5em 0.3em;
+    padding: 0.2em 0.2em;
 }
 
 div.like .active{
     color:#f22;
+}
+
+div.panel-heading h3 {
+    margin-top: 8px;
+}
+
+h3 {
+    margin-bottom: 5px;
 }

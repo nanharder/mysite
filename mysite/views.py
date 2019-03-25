@@ -2,11 +2,11 @@ import datetime
 from django.shortcuts import render
 from django.utils import timezone
 from django.contrib.contenttypes.models import ContentType
-from django.db.models import Sum
+from django.db.models import Sum,Count
 from django.core.cache import cache
 
 from read_statistics.utils import get_seven_days_read_data,get_today_hot_data,get_yesterday_hot_data
-from blog.models import Blog
+from blog.models import Blog,BlogType
 
 
 
@@ -30,6 +30,7 @@ def home(request):
         cache.set('hot_blogs_for_7_days', hot_blogs_for_7_days, 3600)
 
     context = {}
+    context['blog_types'] = BlogType.objects.annotate(blogs_count=Count('blog'))
     context['read_nums'] = readnums
     context['dates'] = dates
     context['today_hot_data'] = get_today_hot_data(countent_type)
