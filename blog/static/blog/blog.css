@@ -106,3 +106,9 @@ div.panel-heading h3 {
 h3 {
     margin-bottom: 5px;
 }
+
+p {
+    text-indent: 2em;
+    margin: 5px 0;
+    line-height: 1.6;
+}
