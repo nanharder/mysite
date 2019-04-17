@@ -9,7 +9,7 @@ div#container {
 
 span.read-num {
     display: inline-block;
-    margin-right: 1em;
+    margin-left: 0.5em;
     color: black;
     width:40px; 
 }
