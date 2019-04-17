@@ -10,23 +10,45 @@ div#container {
 span.read-num {
     display: inline-block;
     margin-right: 1em;
-    color: #337ab7;
+    color: black;
+    width:40px; 
 }
 
-div.home-item {
-    text-align:left;
-    margin-top: 2em;
+div.code-life {
+    text-align: center;
 }
 
-h4.home-item-title {
-    border-bottom: 1px #ccc solid;
-    padding-bottom: 4px;
-    font-weight: bold;
-    font-size: 17px;
+div.site-state {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-top: 1em;
 }
 
-a {
-    color:black;
+div.blogs-count {
+    border-right: 1px solid #eee;
+}
+
+span.state-count {
+    display: block;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+span.state-name {
+    display: block;
+    font-size: 13px;
+    color:#999;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    padding: 2px;
+    max-width: 120px;
+    height: auto;
+    border: 1px solid #eee;
+    opacity: 1;
 }
 
 .jumbotron {

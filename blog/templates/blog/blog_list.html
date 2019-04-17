@@ -13,31 +13,44 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-9 ">
-                <div class="panel panel-default">
-                    <div class="panel-heading">{% block blog_type_title %}博客列表{% endblock %}</div>
-                    <div class="panel-body">
+                <div class="blog-item">
+                    <h4 class="blog-item-title">{% block blog_type_title %}博客列表{% endblock %}</h4>
+                    <div class="blog-item-body">
                         {% for blog in blogs %}
                         <div class="blog">                            
                             <div class="blog-title"><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></div>   
                             <div class="blog-content">{{ blog.content|striptags|truncatechars_html:200|safe }}</div>
                             <div class="blog-info">
-                            <ul class="blog-info">
-                                <li><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
-                                <a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a></li> 
-                                <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                {{ blog.created_time|date:'Y-m-d' }}</li>
-                                <li>阅读({{ blog.get_read_num }})</li>
-                                <li>评论({% get_comment_count blog %})</li>
-                                <li>喜欢({% get_like_count blog %})</li>
-                            </ul>
+                                <ul class="blog-info-description">
+                                        <li><span class="glyphicon glyphicon-tags" aria-hidden="true"></span></li>
+                                        <li>
+                                          <div class="blog-info-content"><a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a>
+                                        </div></li>
+                                      <li><span class="divider">|</span></li>
+                                        <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span></li>
+                                        <li>
+                                          <div class="blog-info-content">{{ blog.created_time|date:'Y-m-d' }}</div></li>
+                                        <li>
+                                      <li><span class="divider">|</span></li>
+                                        <li><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></li>
+                                        <li>{{ blog.get_read_num }}</li>
+                                      <span class="divider">|</span></li>
+                                        <li><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></li>
+                                        <li>{% get_comment_count blog %}</li>
+                                      <li><span class="divider">|</span></li>
+                                      <li> 
+                                      <span class="glyphicon glyphicon-thumbs-up"></span>
+                                      <span>{% get_like_count blog %}</span>
+                                      </li>                 
+                                </ul>
                             </div> 
                         </div>
                         {% empty %}
                         <div class="blog">
-                            <h3>--暂无博客，敬请期待--</h3>   
+                            <h4>--暂无博客，敬请期待--</h4>   
                         </div>
                         {% endfor %}     
-                    </div>
+                    </div>       
                 </div>
                 <div class="paginator">                   
                     <ul class="pagination">
@@ -85,30 +98,32 @@
                 </div>                            
             </div>
             <div class="hidden-xs col-sm-4 col-md-3 ">
-                <div class="panel panel-default">
-                    <div class="panel-heading">博客分类</div>
-                    <div class="panel-body">
-                        <ul class="blog-types">
-                            {% for blog_type in blog_types %}
-                            <li><a href="{% url 'blogs_with_type' blog_type.pk %}">
+                <div class="blog-item">
+                    <h4 class="blog-item-title">博客分类</h4>
+                    <ul>
+                        {% for blog_type in blog_types %}
+                            <li class="item-li">
+                                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                                &nbsp&nbsp
+                                <a href="{% url 'blogs_with_type' blog_type.pk %}">
                                 {{ blog_type.type_name }}({{ blog_type.blogs_count }})</a>
                             </li>
-                            {% empty %}
+                        {% empty %}
                             <li>暂无分类</li>
-                            {% endfor %}
-                        </ul>  
-                    </div>
+                        {% endfor %}
+                    </ul>       
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">日期归档</div>
-                    <div class="panel-body">
+                <div class="blog-item">
+                    <h4 class="blog-item-title">日期归档</h4>
+                    <ul>
                         <ul>
                         {% for blog_date,blog_count in blog_dates.items %}
-                        <li><a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}">{{ blog_date|date:'Y年m月' }}
-                        ({{ blog_count }})</a></li>  
+                        <li class="item-li">
+                            <a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}">{{ blog_date|date:'Y年m月' }}({{ blog_count }})</a>
+                        </li>  
                         {% endfor %}
-                        </ul>                           
-                    </div>
+                        </ul>
+                    </ul>       
                 </div>
             </div>
         </div>

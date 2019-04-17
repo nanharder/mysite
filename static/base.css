@@ -1,3 +1,4 @@
+
 ul {
     list-style-type: none!important;
 }
@@ -12,12 +13,17 @@ div.container {
     margin: 0;
     padding: 0;
     word-wrap:break-word;
+    font-family: Font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei","微软雅黑", sans-serif；
 }
 
 body {
     margin-top: 50px!important;
+    font-size: 15px;
 }
 
+a {
+    color: black;
+}
 ul.navbar-right {
     margin-right: 0;
 }
@@ -39,6 +45,24 @@ div.website-info p {
 
 a.navbar-brand {
     font-size: 18px;
+}
+
+div.blog-item {
+    text-align:left;
+    margin-top: 2em;
+}
+
+h4.blog-item-title {
+    border-bottom: 1px #ccc solid;
+    padding-bottom: 4px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+li.item-li {
+    margin-bottom: 8px;
+    margin-top: 8px;
+
 }
 
 

@@ -30,6 +30,8 @@ def home(request):
         cache.set('hot_blogs_for_7_days', hot_blogs_for_7_days, 3600)
 
     context = {}
+    context['blogs_count'] = Blog.objects.count()
+    context['categories_count'] = BlogType.objects.count()
     context['blog_types'] = BlogType.objects.annotate(blogs_count=Count('blog'))
     context['read_nums'] = readnums
     context['dates'] = dates

@@ -5,8 +5,8 @@
     南航的博客|首页
 {% endblock %}    
 {% block header_extends %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'home.css' %}">
-    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
 {% endblock %}
 {% block nav_home_active %}active{% endblock %}
 {% block content %}
@@ -19,12 +19,35 @@
     </div>
     <div class="container">  
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-1">
-                <div class="home-item">
-                    <h4 class="home-item-title">博客分类</h4>
+            <div class="col-sm-3">
+                <div class="blog-item code-life">
+                    <h4 class="blog-item-title">My Code life</h4>
+                    <img src="{% static 'img/longway.png' %}">
+                    <div class="site-state blogs-count">
+                        <span class="state-count">{{ blogs_count }}</span>
+                        <span class="state-name">blogs</span>
+                    </div>
+                    <div class="site-state categories-count">
+                        <span class="state-count">{{ categories_count }}</span>
+                        <span class="state-name">categories</span>
+                    </div>
+                    <div class="site-state categories-count">
+                        <a href="https://github.com/nanharder" title="Github"><i class="fa fa-fw fa-github"></i>Github</a>
+                    </div>
+                    <div class="site-state categories-count">
+                        <a href="mailto:ustcnanh@gmail.com" title="Github"><i class="fa fa-fw fa-envelope"></i>Email</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 col-sm-offset-1">
+                <div class="blog-item">
+                    <h4 class="blog-item-title">博客分类</h4>
                     <ul>
                         {% for blog_type in blog_types %}
-                            <li><a href="{% url 'blogs_with_type' blog_type.pk %}">
+                            <li class="item-li">
+                                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                                &nbsp&nbsp
+                                <a href="{% url 'blogs_with_type' blog_type.pk %}">
                                 {{ blog_type.type_name }}({{ blog_type.blogs_count }})</a>
                             </li>
                         {% empty %}
@@ -33,19 +56,18 @@
                     </ul>       
                 </div>
             </div>
-            <div class="col-sm-6">
-                <!-- 图表容器 DOM -->
-                <div id="container"></div>
-            </div>
-            </div>
-        
+        </div>
+    </div>
+    <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <div class="home-item">
-                    <h4 class="home-item-title">今天热门点击</h4>
+                <div class="blog-item">
+                    <h4 class="blog-item-title">今天热门点击</h4>
                     <ul>
                         {% for hot_data in today_hot_data %}
-                            <li><span class="read-num">点击数：{{ hot_data.read_num }}</span>
+                            <li>
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                <span class="read-num">{{ hot_data.read_num }}</span>
                                 <a href="{% url 'blog_detail' hot_data.content_object.pk %}">{{ hot_data.content_object.title }}</a>
                             </li>
                         {% empty %}
@@ -55,12 +77,13 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="home-item">
-                    <h4 class="home-item-title">昨天热门点击</h4>
+                <div class="blog-item">
+                    <h4 class="blog-item-title">昨天热门点击</h4>
                     <ul>
                         {% for hot_data in yesterday_hot_data %}
                             <li>
-                                <span class="read-num">点击数：{{ hot_data.read_num }}</span>
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                <span class="read-num">{{ hot_data.read_num }}</span>
                                 <a href="{% url 'blog_detail' hot_data.content_object.pk %}">{{ hot_data.content_object.title }}</a>
                             </li>
                         {% empty %}
@@ -70,12 +93,13 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="home-item">
-                    <h4 class="home-item-title">7天热门点击</h4>
+                <div class="blog-item">
+                    <h4 class="blog-item-title">7天热门点击</h4>
                 <ul>
                     {% for hot_blog in hot_blogs_for_7_days %}
                         <li>
-                            <span class="read-num">点击数：{{ hot_blog.read_num_sum }}</span>
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                            <span class="read-num">{{ hot_blog.read_num_sum }}</span>
                             <a href="{% url 'blog_detail' hot_blog.id %}">{{ hot_blog.title }}</a>
                         </li>
                     {% empty %}
@@ -85,38 +109,7 @@
                 </div>
             </div>
         </div>
-        </div>
     </div>
     <script>
-        // 图表配置
-        var options = {
-            chart: { type: 'line' },
-            title: { text: null },
-            xAxis: {
-                categories: {{ dates|safe }},
-                tickmarkPlacement:'on',
-                title: { text: '前7日阅读量变化'}
-            },
-            yAxis: {
-                title: { text: null },
-                labels:{ enabled:false },
-                gridLineDashStyle: 'Dash',
-            },
-            series: [{                              // 数据列
-                name: '阅读量',                        // 数据列名
-                data: {{ read_nums }}                 // 数据
-            }],
-            plotOptions: {
-                line: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
-            legend : { enabled:false },
-            credits: { enabled:false },
-        };
-        // 图表初始化函数
-        var chart = Highcharts.chart('container', options);
     </script>
 {% endblock %}   
