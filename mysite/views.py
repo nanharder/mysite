@@ -32,7 +32,7 @@ def home(request):
     context = {}
     context['blogs_count'] = Blog.objects.count()
     context['categories_count'] = BlogType.objects.count()
-    context['blog_types'] = BlogType.objects.annotate(blogs_count=Count('blog'))
+    context['blog_types'] = BlogType.objects.annotate(blogs_count=Count('blog')).order_by('-blogs_count')
     context['read_nums'] = readnums
     context['dates'] = dates
     context['today_hot_data'] = get_today_hot_data(countent_type)
