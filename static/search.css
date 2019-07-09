@@ -1,0 +1,50 @@
+body {
+    margin-top: 80px!important;
+}
+
+div.blog {
+    margin-bottom: 0.5em;
+    padding: 1em 0.8em 0.8em 1.5em;
+    border-bottom: 1px solid #ddd;
+}
+
+div.blog-title {
+    font-size:16px;
+    margin-bottom: 0.2em
+}
+
+div.blog-content {
+    text-indent: 2em;
+    margin-bottom: 1em;
+    padding: 0.8em 0.8em 0;
+}
+
+div.blog-info {
+    border-top: 1px #eee solid;
+    padding-top: 0.5em;
+    margin-bottom: 0em;
+    display: inline-block;
+}
+
+ul.blog-info-description li {
+    display: inline-block;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+}
+
+div.blog-info-content {
+    display: inline-block;
+    border-bottom: 1px dashed;
+}
+
+span.divider {
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+}
+
+h4 {
+    border-bottom: 1px #ccc solid;
+    padding-bottom: 4px;
+    font-weight: bold;
+    font-size: 17px;
+}

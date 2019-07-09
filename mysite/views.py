@@ -2,10 +2,11 @@ import datetime
 from django.shortcuts import render
 from django.utils import timezone
 from django.contrib.contenttypes.models import ContentType
-from django.db.models import Sum,Count
+from django.db.models import Sum, Count, Q
 from django.core.cache import cache
+from django.core.paginator import Paginator
 
-from read_statistics.utils import get_seven_days_read_data,get_today_hot_data,get_yesterday_hot_data
+from read_statistics.utils import get_seven_days_read_data, get_today_hot_data, get_yesterday_hot_data
 from blog.models import Blog,BlogType
 
 
@@ -41,3 +42,25 @@ def home(request):
 
     return render(request,'home.html',context)
 
+def search(request):
+    search_words = request.GET.get('wd', '').strip()
+    condition = None
+    for word in search_words.split(' '):
+        if condition is None:
+            condition = Q(title__icontains=word)
+        else:
+            condition = condition | Q(title__icontains=word)
+
+    search_blogs = []
+    if condition != None:
+        search_blogs = Blog.objects.filter(condition)
+
+    page_num = request.GET.get('page',1) #获取页码参数
+    paginator = Paginator(search_blogs, 10) #每20页进行分页
+    page_of_blogs = paginator.get_page(page_num) #获得页码对应的页
+    
+    context = {}
+    context['search_words'] = search_words
+    context['page_of_blogs'] = page_of_blogs
+    context['search_blogs_count'] = search_blogs.count()
+    return render(request, 'search.html', context)

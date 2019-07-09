@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load comment_tags %}
+{% load likes_tags %}
+
+{% block title %}
+    Nanhang Blog | search results
+{% endblock %}    
+{% block header_extends %}
+<link rel="stylesheet" href="{% static 'search.css' %}">
+{% endblock %}
+{% block nav_home_active %}active{% endblock %}
+{% block content %}   
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                {% if search_words == '' %}
+                    <h4>你没有搜索任何内容</h4>
+                    <p>这里是一片荒芜</p>
+                {% else %}
+                    <h4>搜索“{{ search_words }}”, 找到{{ search_blogs_count }}个结果</h4>        
+                    {% for blog in page_of_blogs %}
+                        <div class="blog">                            
+                            <div class="blog-title"><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></div>   
+                            <div class="blog-content">{{ blog.content|striptags|truncatechars_html:200|safe }}</div>
+                            <div class="blog-info">
+                                <ul class="blog-info-description">
+                                        <li><span class="glyphicon glyphicon-tags" aria-hidden="true"></span></li>
+                                        <li>
+                                          <div class="blog-info-content"><a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a>
+                                        </div></li>
+                                      <li><span class="divider">|</span></li>
+                                        <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span></li>
+                                        <li>
+                                          <div class="blog-info-content">{{ blog.created_time|date:'Y-m-d' }}</div></li>
+                                        <li>
+                                      <li><span class="divider">|</span></li>
+                                        <li><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></li>
+                                        <li>{{ blog.get_read_num }}</li>
+                                        <span class="divider">|</span></li>
+                                        <li><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></li>
+                                        <li>{% get_comment_count blog %}</li>
+                                      <li><span class="divider">|</span></li>
+                                      <li> 
+                                      <span class="glyphicon glyphicon-thumbs-up"></span>
+                                      <span>{% get_like_count blog %}</span>
+                                      </li>                
+                                </ul>
+                            </div> 
+                        </div>
+                    {% empty %}
+                        <p>没有找到任何东西，换个关键词试试</p>
+                    {% endfor %}
+                {% endif %}    
+            </div>
+        </div>
+        <div class="row" style="display: flex;justify-content: center;">
+            {% if page_of_blogs.has_previous %}
+            <a class="btn btn-default" href="{% url 'search' %}?wd={{ search_words }}&page={{ page_of_blogs.previous_page_number }}">上一页</a>
+            {% endif %}
+            {% if page_of_blogs.has_next %}
+            <a class="btn btn-default" href="{% url 'search' %}?wd={{ search_words }}&page={{ page_of_blogs.next_page_number }}">下一页</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}   

@@ -3,6 +3,9 @@ ul {
     list-style-type: none!important;
 }
 
+div#content {
+    min-height: 250px;
+}
 div.container {
     padding-right: 15px;
     padding-left: 15px;
@@ -63,6 +66,13 @@ li.item-li {
     margin-bottom: 8px;
     margin-top: 8px;
 
+}
+
+.search-form button[type="submit"] {
+    background: none;
+    border: none;
+    margin-left: -3em;
+    color: #aaa;
 }
 
 
