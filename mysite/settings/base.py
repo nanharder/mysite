@@ -131,7 +131,7 @@ CKEDITOR_CONFIGS = {
                     ['TextColor', 'BGColor'],
  
                     ),
-        'extraPlugins': 'codesnippet',
+        'extraPlugins': ','.join(['codesnippet', 'prism', 'widget', 'lineutils']),
     },
     'comment_ckeditor':{
         'toolbar': 'custom',
