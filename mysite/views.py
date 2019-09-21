@@ -6,7 +6,7 @@ from django.db.models import Sum, Count, Q
 from django.core.cache import cache
 from django.core.paginator import Paginator
 
-from read_statistics.utils import get_seven_days_read_data, get_today_hot_data, get_yesterday_hot_data
+from read_statistics.utils import get_seven_days_read_data, get_today_hot_data, get_yesterday_hot_data, get_views
 from blog.models import Blog,BlogType
 
 
@@ -34,6 +34,7 @@ def home(request):
     context['blogs_count'] = Blog.objects.count()
     context['categories_count'] = BlogType.objects.count()
     context['blog_types'] = BlogType.objects.annotate(blogs_count=Count('blog')).order_by('-blogs_count')
+    context['views'] = get_views()
     context['read_nums'] = readnums
     context['dates'] = dates
     context['today_hot_data'] = get_today_hot_data(countent_type)

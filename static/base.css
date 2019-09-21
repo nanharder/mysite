@@ -83,6 +83,11 @@ li.item-li {
     color: #aaa;
 }
 
+form.search-form {
+    width: 200px;
+    padding-right: 0px;
+}
+
 
 
 

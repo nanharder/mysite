@@ -42,5 +42,8 @@ def get_yesterday_hot_data(content_type):
     read_details = ReadDetail.objects.filter(content_type=content_type,date=today).order_by('-read_num')
     return read_details[:7]
 
+def get_views():
+    views = ReadNum.objects.aggregate(viewnum=Sum('read_num'))
+    return views['viewnum']
 
 
