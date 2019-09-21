@@ -29,6 +29,10 @@ div.categories-count {
     border-right: 1px solid #eee;
 }
 
+div.blogs-count {
+    border-right: 1px solid #eee;
+}
+
 span.state-count {
     display: block;
     font-size: 16px;
